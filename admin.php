@@ -34,8 +34,8 @@ class admin {
                 echo '<tr>' . '<td>' . $row['class'] . '</td>' . '<td>' . $row['period'] . '</td>' . '<td>' . $row['subject'] . '<td>' . $row['Day'] . '</td>' . '<td>' . $row['Name'] . '</td>' . '</td>' . '</tr>';
             }
         } else {
-            //self::populateSchedule($id);
-            //$this->showSchedule($id);
+            self::populateSchedule($id);
+            $this::showSchedule($id);
         }
     }
 
