@@ -12,5 +12,6 @@
             $admin->showClasses();
             ?>
         </table>
+        <a href="exam.php">Generate Exam</a>
     </body>
 </html>

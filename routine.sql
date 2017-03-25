@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 25, 2017 at 11:58 PM
+-- Generation Time: Mar 26, 2017 at 01:06 AM
 -- Server version: 5.5.35-1ubuntu1
 -- PHP Version: 5.5.9-1ubuntu4
 
@@ -42,6 +42,23 @@ INSERT INTO `Days` (`Number`, `Day`) VALUES
 (3, 'Monday'),
 (4, 'Tuesday'),
 (5, 'Wednesday');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam`
+--
+
+CREATE TABLE IF NOT EXISTS `exam` (
+  `Date` text NOT NULL,
+  `Class` int(11) NOT NULL,
+  `Start Time` float NOT NULL,
+  `End TIme` float NOT NULL,
+  `Guard` int(11) NOT NULL,
+  `Room` int(11) NOT NULL,
+  KEY `Room` (`Room`),
+  KEY `Guard` (`Guard`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -88,6 +105,35 @@ INSERT INTO `Period` (`StartTime`, `EndTime`, `Number`) VALUES
 (12.05, 12.5, 6),
 (12.5, 1.35, 7),
 (1.35, 2.2, 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Room`
+--
+
+CREATE TABLE IF NOT EXISTS `Room` (
+  `Number` int(11) NOT NULL,
+  PRIMARY KEY (`Number`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Room`
+--
+
+INSERT INTO `Room` (`Number`) VALUES
+(101),
+(102),
+(103),
+(104),
+(201),
+(202),
+(203),
+(204),
+(301),
+(302),
+(303),
+(304);
 
 -- --------------------------------------------------------
 
@@ -570,6 +616,13 @@ INSERT INTO `teacherSubject` (`Teacher`, `Subject`) VALUES
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `exam`
+--
+ALTER TABLE `exam`
+  ADD CONSTRAINT `exam_ibfk_2` FOREIGN KEY (`Guard`) REFERENCES `teachers` (`ID`),
+  ADD CONSTRAINT `exam_ibfk_1` FOREIGN KEY (`Room`) REFERENCES `Room` (`Number`);
 
 --
 -- Constraints for table `schedule`
