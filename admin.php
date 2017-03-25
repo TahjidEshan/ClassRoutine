@@ -91,7 +91,10 @@ class admin {
             }
         }
     }
-    public function createExam(){
+
+    public function createExam($name, $startDate, $endDate) {
+        $query = "INSERT INTO `routine`.`ExamName` (`Name`, `ExamName`) VALUES (NULL, '" . $name . "')";
+        $this->c->insert($this->conn, $query);
         
     }
 
