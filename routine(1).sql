@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2017 at 01:06 AM
+-- Generation Time: Mar 26, 2017 at 05:35 AM
 -- Server version: 5.5.35-1ubuntu1
 -- PHP Version: 5.5.9-1ubuntu4
 
@@ -52,13 +52,28 @@ INSERT INTO `Days` (`Number`, `Day`) VALUES
 CREATE TABLE IF NOT EXISTS `exam` (
   `Date` text NOT NULL,
   `Class` int(11) NOT NULL,
-  `Start Time` float NOT NULL,
-  `End TIme` float NOT NULL,
-  `Guard` int(11) NOT NULL,
+  `StartTime` text NOT NULL,
+  `EndTIme` text NOT NULL,
+  `Guard` int(11) DEFAULT NULL,
   `Room` int(11) NOT NULL,
+  `Name` int(11) NOT NULL,
+  `Subject` text NOT NULL,
   KEY `Room` (`Room`),
-  KEY `Guard` (`Guard`)
+  KEY `Guard` (`Guard`),
+  KEY `Name` (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ExamName`
+--
+
+CREATE TABLE IF NOT EXISTS `ExamName` (
+  `Name` int(11) NOT NULL AUTO_INCREMENT,
+  `ExamName` varchar(30) NOT NULL,
+  PRIMARY KEY (`Name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 -- --------------------------------------------------------
 
@@ -561,18 +576,18 @@ INSERT INTO `Subjects` (`Name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `teachers` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(20) NOT NULL,
+  `NameTeacher` varchar(20) NOT NULL,
   `Phone` int(11) NOT NULL,
   `Email` varchar(30) NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `Name` (`Name`)
+  UNIQUE KEY `Name` (`NameTeacher`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `teachers`
 --
 
-INSERT INTO `teachers` (`ID`, `Name`, `Phone`, `Email`) VALUES
+INSERT INTO `teachers` (`ID`, `NameTeacher`, `Phone`, `Email`) VALUES
 (1, 'Eshan', 0, ''),
 (2, 'Saiful', 0, ''),
 (3, 'Rafiul', 0, ''),
@@ -621,8 +636,9 @@ INSERT INTO `teacherSubject` (`Teacher`, `Subject`) VALUES
 -- Constraints for table `exam`
 --
 ALTER TABLE `exam`
+  ADD CONSTRAINT `exam_ibfk_1` FOREIGN KEY (`Room`) REFERENCES `Room` (`Number`),
   ADD CONSTRAINT `exam_ibfk_2` FOREIGN KEY (`Guard`) REFERENCES `teachers` (`ID`),
-  ADD CONSTRAINT `exam_ibfk_1` FOREIGN KEY (`Room`) REFERENCES `Room` (`Number`);
+  ADD CONSTRAINT `exam_ibfk_3` FOREIGN KEY (`Name`) REFERENCES `ExamName` (`Name`);
 
 --
 -- Constraints for table `schedule`

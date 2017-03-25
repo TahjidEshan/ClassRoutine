@@ -25,7 +25,7 @@ class admin {
 
     public function showSchedule($id) {
         $query = "select schedule.class, schedule.period, schedule.subject, Days.Day, "
-                . "teachers.Name from schedule, Days, teachers where schedule.Day=Days.Number "
+                . "teachers.NameTeacher from schedule, Days, teachers where schedule.Day=Days.Number "
                 . "and schedule.Teacher=teachers.ID and schedule.class=" . $id;
         $result = $this->c->execute($this->conn, $query);
         echo '<h1>Class ' . $id . '</h1>';
@@ -37,15 +37,15 @@ class admin {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 if ($row['Day'] == 'Saturday') {
-                    array_push($sat, ($row['subject'] . "<br>" . $row['Name']));
+                    array_push($sat, ($row['subject'] . "<br>" . $row['NameTeacher']));
                 } elseif ($row['Day'] == 'Sunday') {
-                    array_push($sun, ($row['subject'] . "<br>" . $row['Name']));
+                    array_push($sun, ($row['subject'] . "<br>" . $row['NameTeacher']));
                 } elseif ($row['Day'] == 'Monday') {
-                    array_push($mon, ($row['subject'] . "<br>" . $row['Name']));
+                    array_push($mon, ($row['subject'] . "<br>" . $row['NameTeacher']));
                 } elseif ($row['Day'] == 'Tuesday') {
-                    array_push($tue, ($row['subject'] . "<br>" . $row['Name']));
+                    array_push($tue, ($row['subject'] . "<br>" . $row['NameTeacher']));
                 } elseif ($row['Day'] == 'Wednesday') {
-                    array_push($wed, ($row['subject'] . "<br>" . $row['Name']));
+                    array_push($wed, ($row['subject'] . "<br>" . $row['NameTeacher']));
                 }
             }
             echo '<tr><td>Time</td><td>1st</td><td>2nd</td><td>3rd</td>'
@@ -92,10 +92,67 @@ class admin {
         }
     }
 
-    public function createExam($name, $startDate, $endDate) {
+    public function createExam($name, $startDate) {
         $query = "INSERT INTO `routine`.`ExamName` (`Name`, `ExamName`) VALUES (NULL, '" . $name . "')";
         $this->c->insert($this->conn, $query);
-        
+        //$date = strtotime("+1 day", strtotime($startDate));
+        //echo date("Y/m/d", $date);
+        $sub = array();
+        $query1 = "select * from Subjects";
+        $result = $this->c->execute($this->conn, $query1);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($sub, $row['Name']);
+            }
+        }
+        for ($i = 1; $i <= 10; $i++) {
+            $startTime = '10.00 am';
+            $endTime = '1.00 pm';
+            if ($i > 5) {
+                $startTime = '2.00 pm';
+                $endTime = '5.00 pm';
+            }
+            $date = $startDate;
+            for ($j = 1; $j <= count($sub); $j++) {
+                $query2 = "select min(teachers.ID) from teachers where not exists"
+                        . "(select * from exam where exam.Guard=teachers.ID "
+                        . "and exam.Date='" . $date . "' and exam.StartTime='" . $startTime . "') "
+                        . "ORDER BY teachers.ID";
+                //echo $query2;
+                $result1 = $this->c->execute($this->conn, $query2);
+                $teacher = "TBA";
+                if ($result1->num_rows > 0) {
+                    while ($row1 = $result1->fetch_assoc()) {
+                        $teacher = $row1['min(teachers.ID)'];
+                    }
+                }
+                //echo $teacher;
+                $subQuery = "select Name from ExamName where ExamName.ExamName='" . $name . "'";
+                $subResult = $this->c->execute($this->conn, $subQuery);
+                $subRow = $subResult->fetch_assoc();
+                $query3 = "INSERT INTO `routine`.`exam` "
+                        . "(`Date`, `Class`, `StartTime`, `EndTIme`, `Guard`, `Room`, `Name`,`Subject`) "
+                        . "VALUES ('" . $date . "', '" . $i . "', '" . $startTime . "', '" . $endTime . "', '" . $teacher . "', '303', '" . $subRow['Name'] . "', '" . $sub[$j] . "')";
+                $this->c->insert($this->conn, $query3);
+                $date = strtotime("+1 day", strtotime($date));
+                $date = date("d/m/Y", $date);
+            }
+        }
+        self::showRoutine($name);
+    }
+
+    public function showRoutine($name) {
+        $query = "select * from ExamName,exam,teachers where ExamName.Name=exam.Name "
+                . "and exam.Guard=teachers.ID and ExamName.ExamName='".$name."'";
+        $result = $this->c->execute($this->conn, $query);
+        //echo $query;
+        echo '<tr><td>Date</td><td>Class</td><td>Subject</td><td>Guard</td><td>Room</td><td>Time</td></tr>';
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr><td>".$row['Date']."</td><td>".$row['Class']."</td><td>".$row['Subject']."</td><td>".$row['NameTeacher']."</td><td>".$row['Room']."</td><td>".$row['StartTime']."-".$row['EndTIme']."</td></tr>";
+            }
+        }
+        echo "<a href='home.php'>Go Back TO Home Page</a>";
     }
 
 }

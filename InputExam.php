@@ -22,8 +22,6 @@
             </select><br>
             Select Start Date
             <input id="startdatepicker" name="startdatepicker"/><br>
-            Select End Date
-            <input id="enddatepicker" name="enddatepicker"/><br>
             <input type="submit" value="Generate">
         </form>
     </body>
