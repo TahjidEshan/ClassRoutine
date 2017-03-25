@@ -91,6 +91,9 @@ class admin {
             }
         }
     }
+    public function createExam(){
+        
+    }
 
 }
 
