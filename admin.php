@@ -35,7 +35,7 @@ class admin {
             }
         } else {
             self::populateSchedule($id);
-            $this::showSchedule($id);
+            self::showSchedule($id);
         }
     }
 
