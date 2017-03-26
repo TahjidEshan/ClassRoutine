@@ -33,6 +33,7 @@
                 //echo $exam."<br>".$startDate."<br>".$endDate;
                 ?>
             </table>
+            <a href="seatPlan.php">SHOW SEAT PLAN</a><br>
             <a href="home.php">GO BACK TO HOME PAGE</a>
         </div>
     </body>

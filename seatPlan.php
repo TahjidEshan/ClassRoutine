@@ -25,13 +25,10 @@
                 <?php
                 include ("admin.php");
                 session_start();
-                $exam = $_POST ["examName"];
                 $admin = new admin();
-                $admin->showRoutine($exam);
-                //echo $exam."<br>".$startDate."<br>".$endDate;
+                $admin->generateSeatPlan();
                 ?>
             </table>
-            <a href="seatPlan.php">SHOW SEAT PLAN</a><br>
             <a href="home.php">GO BACK TO HOME PAGE</a>
         </div>
     </body>

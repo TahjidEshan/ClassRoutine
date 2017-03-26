@@ -102,9 +102,17 @@ hr {
     border-width: 1px;
     border-style: solid;
 }
+.thin-black-line {
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
 table td,th{ 
     empty-cells: show;
     text-align:center;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
 }
 .sc{
     text-align:left;

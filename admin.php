@@ -132,8 +132,9 @@ class admin {
                 $subRow = $subResult->fetch_assoc();
                 $query3 = "INSERT INTO `routine`.`exam` "
                         . "(`Date`, `Class`, `StartTime`, `EndTIme`, `Guard`, `Room`, `Name`,`Subject`) "
-                        . "VALUES ('" . $date . "', '" . $i . "', '" . $startTime . "', '" . $endTime . "', '" . $teacher . "', '303', '" . $subRow['Name'] . "', '" . $sub[$j] . "')";
+                        . "VALUES ('" . $date . "', '" . $i . "', '" . $startTime . "', '" . $endTime . "', '" . $teacher . "', '000', '" . $subRow['Name'] . "', '" . $sub[$j] . "')";
                 $this->c->insert($this->conn, $query3);
+                //echo $query3;
                 $date = strtotime("+1 day", strtotime($date));
                 $date = date("d/m/Y", $date);
             }
@@ -146,10 +147,10 @@ class admin {
                 . "and exam.Guard=teachers.ID and ExamName.ExamName='" . $name . "'";
         $result = $this->c->execute($this->conn, $query);
         //echo $query;
-        echo '<tr class="thin-black-border"><td class="thin-black-border">Date</td><td class="thin-black-border">Class</td><td class="thin-black-border">Subject</td><td class="thin-black-border">Guard</td><td class="thin-black-border">Room</td><td class="thin-black-border">Time</td></tr>';
+        echo '<tr class="thin-black-border"><td class="thin-black-border">Date</td><td class="thin-black-border">Class</td><td class="thin-black-border">Subject</td><td class="thin-black-border">Guard</td><td class="thin-black-border">Time</td></tr>';
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo "<tr><td class='thin-black-border'>" . $row['Date'] . "</td><td class='thin-black-border'>" . $row['Class'] . "</td><td class='thin-black-border'>" . $row['Subject'] . "</td><td class='thin-black-border'>" . $row['NameTeacher'] . "</td><td class='thin-black-border'>" . $row['Room'] . "</td><td class='thin-black-border'>" . $row['StartTime'] . "-" . $row['EndTIme'] . "</td></tr>";
+                echo "<tr class='thin-black-border'><td class='thin-black-border'>" . $row['Date'] . "</td><td class='thin-black-border'>" . $row['Class'] . "</td><td class='thin-black-border'>" . $row['Subject'] . "</td><td class='thin-black-border'>" . $row['NameTeacher'] . "</td><td class='thin-black-border'>" . $row['StartTime'] . "-" . $row['EndTIme'] . "</td></tr>";
             }
         }
     }
@@ -167,6 +168,49 @@ class admin {
             }
         }
         echo "<a href='home.php'>Go Back To Home Page</a>";
+    }
+
+    public function generateSeatPlan() {
+        $room = array();
+        $query = "select Number from Room";
+        $result = $this->c->execute($this->conn, $query);
+        $val1 = 1;
+        $val2 = 2;
+        $val3 = 3;
+        $valCount = 0;
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if ($row['Number'] > 0) {
+                    echo "<tr class='thin-black-border'><td class='thin-black-border'>Room No. " . $row['Number'] . "</td></tr>";
+                    echo "<tr  class= 'thin-black-line'><td class= 'thin-black-line'>Class " . $val1 . " </td> "
+                    . "<td class= 'thin-black-line'>Class " . $val2 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val3 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val1 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val2 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val3 . " </td></tr>";
+                    echo "<tr  class= 'thin-black-line'><td class= 'thin-black-line'>Class " . $val2 . " </td> "
+                    . "<td class= 'thin-black-line'>Class " . $val3 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val1 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val2 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val3 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val1 . " </td></tr>";
+                    echo "<tr  class= 'thin-black-line'><td class= 'thin-black-line'>Class " . $val3 . " </td> "
+                    . "<td class= 'thin-black-line'>Class " . $val1 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val2 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val3 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val1 . " </td>"
+                    . "<td class= 'thin-black-line'>Class " . $val2 . " </td></tr>";
+                    $valCount += 6;
+                    if ($valCount > 15 && $val3 < 10) {
+                        $val1++;
+                        $val2++;
+                        $val3++;
+                    } else if ($valCount > 15) {
+                        break;
+                    }
+                }
+            }
+        }
     }
 
 }
