@@ -1,0 +1,163 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 26, 2017, 5:37:41 AM
+    Author     : eshan
+*/
+
+
+body{
+    background-color: palegreen;
+}
+
+#login{
+
+    line-height: 2;
+    font-family: Times Roman; 
+    width: 350px;
+    background-color: white;
+    text-align: center;
+    position:absolute;
+    height:200px;
+    z-index:15;
+    top:50%;
+    left:50%;
+    margin:-100px 0 0 -150px;
+
+
+}
+
+#signup{
+
+    line-height: 2;
+    font-family: Times Roman; 
+    width: 350px;
+    background-color: white;
+    text-align: center;
+    position:absolute;
+    height:250px;
+    z-index:15;
+    top:50%;
+    left:50%;
+    margin:-100px 0 0 -150px;
+
+}
+#submission{
+
+    line-height: 2;
+    font-family: Times Roman; 
+    width: 350px;
+    background-color: white;
+    text-align: center;
+    position:absolute;
+    height:250px;
+    z-index:15;
+    top:50%;
+    left:50%;
+    margin:-100px 0 0 -150px;
+
+}
+
+#head{
+    margin-left:300px;
+
+}
+.img{
+    margin-left: 300px;
+}
+hr {
+    display: block;
+    margin-top: -0.1em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: 395px;
+    border-style: inset;
+    border-width: 1px;
+}
+#address{
+    margin-left:40px;
+}
+#address1{
+    margin-left:150px;
+}
+.thin-black-border {
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
+table td,th{ 
+    empty-cells: show;
+    text-align:center;
+}
+.sc{
+    text-align:left;
+}
+.middle{
+    margin-top:200px;
+}
+body, html{
+    margin:0;
+    padding:0;
+}
+.whole{
+    font-family:Lobster, Monospace;
+    background-color:None;
+}
+.thin-blue-border {
+    border-color: #87CEEB;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 100%;
+}
+.thin-white-border {
+    border-color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+}
+btn {
+    padding: 10px 20px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
+.btn.sharp {
+    border-radius:0;
+}
+.btn-lg.round {
+    border-radius: 20px;
+}
+.btn-primary.raised {
+    box-shadow: 0 3px 0 0 #007299;
+}
+.btn-primary.raised:active, .btn-primary.raised.active {
+    background: #33a6cc;
+    box-shadow: none;
+    margin-bottom: -3px;
+    margin-top: 3px;
+}
+.btn-black{
+    background:black;
+}

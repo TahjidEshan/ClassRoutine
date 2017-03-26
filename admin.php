@@ -152,7 +152,7 @@ class admin {
                 echo "<tr><td>".$row['Date']."</td><td>".$row['Class']."</td><td>".$row['Subject']."</td><td>".$row['NameTeacher']."</td><td>".$row['Room']."</td><td>".$row['StartTime']."-".$row['EndTIme']."</td></tr>";
             }
         }
-        echo "<a href='home.php'>Go Back TO Home Page</a>";
+        echo "<a href='home.php'>Go Back To Home Page</a>";
     }
 
 }
