@@ -28,6 +28,20 @@
             </table>
             <a href="InputExam.php" style="text-align:center;font-size:200%;margin-left:520px; ">New Exam</a>
             <a href="teacher.php" style="text-align:center;font-size:200%;margin-left:500px; ">Add Teacher</a>
+            <form name="Exam Form" action = "ShowSchedule.php" method="post" style="font-size:200%;margin-left: 400px;">
+                Show Routine:<select name="subject">
+                    <?php
+                    $query = "select * from ExamName";
+                    $result = $admin->c->execute($admin->conn, $query);
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option>" . $row['ExamName'] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>            
+                <input type="submit" class="btn btn-primary btn-lg btn-black sharp" value="Show"> 
+            </form>
         </div>
     </body>
 </html>
