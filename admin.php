@@ -48,20 +48,20 @@ class admin {
                     array_push($wed, ($row['subject'] . "<br>" . $row['NameTeacher']));
                 }
             }
-            echo '<tr><td>Time</td><td>1st</td><td>2nd</td><td>3rd</td>'
-            . '<td>Break</td><td>4th</td><td>5th</td><td>6th</td><td>7th</td><td>8th</td></tr>';
-            echo '<tr><td>Day</td><td>8.00-8.45</td><td>8.45-9.25</td><td>9.25-10.05</td><td>&nbsp;</td><td>10.35-11.20</td>'
-            . '<td>11.20-12.05</td><td>12.05-12.50</td><td>12.50-1.35</td><td>1.35-2.20</td></tr>';
-            echo '<tr><td>Saturday</td><td>' . $sat[0] . '</td><td>' . $sat[1] . '</td><td>' . $sat[2] . '</td><td>&nbsp;</td><td>' . $sat[3] . '</td>'
-            . '<td>' . $sat[4] . '</td><td>' . $sat[5] . '</td><td>' . $sat[6] . '</td><td>' . $sat[7] . '</td></tr>';
-            echo '<tr><td>Sunday</td><td>' . $sun[0] . '</td><td>' . $sun[1] . '</td><td>' . $sun[2] . '</td><td>&nbsp;</td><td>' . $sun[3] . '</td>'
-            . '<td>' . $sun[4] . '</td><td>' . $sun[5] . '</td><td>' . $sun[6] . '</td><td>' . $sun[7] . '</td></tr>';
-            echo '<tr><td>Monday</td><td>' . $mon[0] . '</td><td>' . $mon[1] . '</td><td>' . $mon[2] . '</td><td>&nbsp;</td><td>' . $mon[3] . '</td>'
-            . '<td>' . $mon[4] . '</td><td>' . $mon[5] . '</td><td>' . $mon[6] . '</td><td>' . $mon[7] . '</td></tr>';
-            echo '<tr><td>Tuesday</td><td>' . $tue[0] . '</td><td>' . $tue[1] . '</td><td>' . $tue[2] . '</td><td>&nbsp;</td><td>' . $tue[3] . '</td>'
-            . '<td>' . $tue[4] . '</td><td>' . $tue[5] . '</td><td>' . $tue[6] . '</td><td>' . $tue[7] . '</td></tr>';
-            echo '<tr><td>Saturday</td><td>' . $wed[0] . '</td><td>' . $wed[1] . '</td><td>' . $wed[2] . '</td><td>&nbsp;</td><td>' . $wed[3] . '</td>'
-            . '<td>' . $wed[4] . '</td><td>' . $wed[5] . '</td><td>' . $wed[6] . '</td><td>' . $wed[7] . '</td></tr>';
+            echo '<tr class="thin-black-border"><td class="thin-black-border">Time</td><td class="thin-black-border">1st</td><td class="thin-black-border">2nd</td><td class="thin-black-border">3rd</td>'
+            . '<td class="thin-black-border">Break</td><td class="thin-black-border">4th</td><td class="thin-black-border">5th</td><td class="thin-black-border">6th</td><td class="thin-black-border">7th</td><td class="thin-black-border">8th</td></tr>';
+            echo '<tr class="thin-black-border"><td class="thin-black-border">Day</td><td class="thin-black-border">8.00-8.45</td><td class="thin-black-border">8.45-9.25</td><td class="thin-black-border">9.25-10.05</td><td>&nbsp;</td><td class="thin-black-border">10.35-11.20</td>'
+            . '<td class="thin-black-border">11.20-12.05</td><td class="thin-black-border">12.05-12.50</td><td class="thin-black-border">12.50-1.35</td><td class="thin-black-border">1.35-2.20</td></tr>';
+            echo '<tr class="thin-black-border"><td class="thin-black-border">Saturday</td><td class="thin-black-border">' . $sat[0] . '</td><td class="thin-black-border">' . $sat[1] . '</td><td class="thin-black-border">' . $sat[2] . '</td><td>&nbsp;</td><td class="thin-black-border">' . $sat[3] . '</td>'
+            . '<td class="thin-black-border">' . $sat[4] . '</td><td class="thin-black-border">' . $sat[5] . '</td><td class="thin-black-border">' . $sat[6] . '</td><td class="thin-black-border">' . $sat[7] . '</td></tr>';
+            echo '<tr class="thin-black-border"><td class="thin-black-border">Sunday</td><td class="thin-black-border">' . $sun[0] . '</td><td class="thin-black-border">' . $sun[1] . '</td><td class="thin-black-border">' . $sun[2] . '</td><td>&nbsp;</td><td class="thin-black-border">' . $sun[3] . '</td>'
+            . '<td class="thin-black-border">' . $sun[4] . '</td><td class="thin-black-border">' . $sun[5] . '</td><td class="thin-black-border">' . $sun[6] . '</td><td class="thin-black-border">' . $sun[7] . '</td></tr>';
+            echo '<tr class="thin-black-border"><td class="thin-black-border">Monday</td><td class="thin-black-border">' . $mon[0] . '</td><td class="thin-black-border">' . $mon[1] . '</td><td class="thin-black-border">' . $mon[2] . '</td><td>&nbsp;</td><td class="thin-black-border">' . $mon[3] . '</td>'
+            . '<td class="thin-black-border">' . $mon[4] . '</td><td class="thin-black-border">' . $mon[5] . '</td><td class="thin-black-border">' . $mon[6] . '</td><td class="thin-black-border">' . $mon[7] . '</td></tr>';
+            echo '<tr class="thin-black-border"><td class="thin-black-border">Tuesday</td><td class="thin-black-border">' . $tue[0] . '</td><td class="thin-black-border">' . $tue[1] . '</td><td class="thin-black-border">' . $tue[2] . '</td><td>&nbsp;</td><td class="thin-black-border">' . $tue[3] . '</td>'
+            . '<td class="thin-black-border">' . $tue[4] . '</td><td class="thin-black-border">' . $tue[5] . '</td><td class="thin-black-border">' . $tue[6] . '</td><td class="thin-black-border">' . $tue[7] . '</td></tr>';
+            echo '<tr class="thin-black-border"><td class="thin-black-border">Saturday</td><td class="thin-black-border">' . $wed[0] . '</td><td class="thin-black-border">' . $wed[1] . '</td><td class="thin-black-border">' . $wed[2] . '</td><td>&nbsp;</td><td class="thin-black-border">' . $wed[3] . '</td>'
+            . '<td class="thin-black-border">' . $wed[4] . '</td><td class="thin-black-border">' . $wed[5] . '</td><td class="thin-black-border">' . $wed[6] . '</td><td class="thin-black-border">' . $wed[7] . '</td></tr>';
         } else {
             self::populateSchedule($id);
             self::showSchedule($id);
