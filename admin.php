@@ -143,13 +143,28 @@ class admin {
 
     public function showRoutine($name) {
         $query = "select * from ExamName,exam,teachers where ExamName.Name=exam.Name "
-                . "and exam.Guard=teachers.ID and ExamName.ExamName='".$name."'";
+                . "and exam.Guard=teachers.ID and ExamName.ExamName='" . $name . "'";
         $result = $this->c->execute($this->conn, $query);
         //echo $query;
         echo '<tr><td>Date</td><td>Class</td><td>Subject</td><td>Guard</td><td>Room</td><td>Time</td></tr>';
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo "<tr><td>".$row['Date']."</td><td>".$row['Class']."</td><td>".$row['Subject']."</td><td>".$row['NameTeacher']."</td><td>".$row['Room']."</td><td>".$row['StartTime']."-".$row['EndTIme']."</td></tr>";
+                echo "<tr><td>" . $row['Date'] . "</td><td>" . $row['Class'] . "</td><td>" . $row['Subject'] . "</td><td>" . $row['NameTeacher'] . "</td><td>" . $row['Room'] . "</td><td>" . $row['StartTime'] . "-" . $row['EndTIme'] . "</td></tr>";
+            }
+        }
+        echo "<a href='home.php'>Go Back To Home Page</a>";
+    }
+
+    public function addTeacher($name, $mail, $phone, $subject) {
+        $query = "INSERT INTO `routine`.`teachers` (`ID`, `NameTeacher`, `Phone`, `Email`) VALUES (NULL, '" . $name . "', '" . $phone . "', '" . $mail . "')";
+        $this->c->insert($this->conn, $query);
+        $query1 = "select ID from teachers where NameTeacher='" . $name . "' and Phone=" . $phone . " and Email='" . $mail . "'";
+        $result = $this->c->execute($this->conn, $query1);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $query2 = "INSERT INTO `routine`.`teacherSubject` (`Teacher`, `Subject`) "
+                        . "VALUES ('" . $row['ID'] . "', '" . $subject . "')";
+                $this->c->insert($this->conn, $query2);
             }
         }
         echo "<a href='home.php'>Go Back To Home Page</a>";
